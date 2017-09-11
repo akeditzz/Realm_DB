@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:padding="8dp"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+
+        android:inputType="phone"
+        android:hint="Phone"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintHorizontal_bias="0.503" />
+
+    <EditText
+        android:id="@+id/carname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="CarName"
+        android:inputType="textPersonName"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="@+id/phone"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/phone"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/phone"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+    <EditText
+        android:id="@+id/carno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="CarNo"
+        android:inputType="text"
+        app:layout_constraintLeft_toLeftOf="@+id/carname"
+        app:layout_constraintRight_toRightOf="@+id/carname"
+        app:layout_constraintTop_toBottomOf="@+id/carname" />
+
+</android.support.constraint.ConstraintLayout>

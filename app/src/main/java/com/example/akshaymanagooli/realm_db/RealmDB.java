@@ -14,8 +14,10 @@ public class RealmDB extends Application {
     public void onCreate() {
         super.onCreate();
         Realm.init(this);
-        RealmConfiguration config = new RealmConfiguration.Builder().build();
+
+        RealmConfiguration config = new RealmConfiguration.Builder().name("User.realm").build();
 
         Realm.setDefaultConfiguration(config);
+
     }
 }

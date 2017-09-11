@@ -1,6 +1,4 @@
-package com.example.akshaymanagooli.realm_db;
-
-import java.io.Serializable;
+package com.example.akshaymanagooli.realm_db.Model;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;

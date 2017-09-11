@@ -20,7 +20,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="62dp"
-        app:layout_constraintHorizontal_bias="0.503" />
+        app:layout_constraintHorizontal_bias="0.503"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <EditText
         android:id="@+id/phone"
@@ -31,11 +33,11 @@
         android:inputType="phone"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="@+id/name"
-        android:layout_marginLeft="0dp"
         app:layout_constraintLeft_toLeftOf="@+id/name"
         android:layout_marginTop="37dp"
         app:layout_constraintTop_toBottomOf="@+id/name"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginEnd="8dp" />
 
     <Button
         android:id="@+id/button"
@@ -43,13 +45,12 @@
         android:layout_height="wrap_content"
         android:text="Add"
         android:onClick="click"
-        android:layout_marginTop="31dp"
-        app:layout_constraintTop_toBottomOf="@+id/phone"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="@+id/phone"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/phone"
-        app:layout_constraintHorizontal_bias="0.495" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp" />
 
     <Button
         android:id="@+id/button2"
@@ -57,24 +58,71 @@
         android:layout_height="wrap_content"
         android:text="View"
         android:onClick="click"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        android:layout_marginLeft="0dp"
-        app:layout_constraintLeft_toLeftOf="@+id/button"
-        android:layout_marginRight="0dp"
-        app:layout_constraintRight_toRightOf="@+id/button"
-        app:layout_constraintHorizontal_bias="1.0" />
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp" />
     <RelativeLayout
         android:clickable="true"
         android:visibility="gone"
         android:id="@+id/progressbar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:background="#a0001aff"
         android:elevation="16dp"
-        android:layout_height="match_parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="0dp"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp">
         <ProgressBar
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </RelativeLayout>
+
+    <EditText
+        android:id="@+id/et_carname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="CarName"
+        android:inputType="textPersonName"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="@+id/phone"
+        app:layout_constraintRight_toRightOf="@+id/phone"
+        app:layout_constraintTop_toBottomOf="@+id/phone" />
+
+    <EditText
+        android:id="@+id/et_carno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="34dp"
+        android:ems="10"
+        android:hint="CarNo"
+        android:inputType="textPersonName"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="@+id/et_carname"
+        app:layout_constraintRight_toRightOf="@+id/et_carname"
+        app:layout_constraintTop_toBottomOf="@+id/et_carname" />
+
+    <Button
+        android:id="@+id/et_addcar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:elevation="0dp"
+        android:onClick="click"
+        android:text="Add Car"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/button"
+        app:layout_constraintRight_toLeftOf="@+id/button2" />
 </android.support.constraint.ConstraintLayout>

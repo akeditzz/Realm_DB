@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="300dp"
     android:layout_height="50dp">
 
     <TextView
@@ -13,31 +13,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView
-        android:id="@+id/phone"
-        android:layout_toRightOf="@+id/name"
+        android:id="@+id/no"
+        android:layout_below="@+id/name"
         android:fontFamily="sans-serif-light"
         android:textColor="#000000"
-        android:layout_marginStart="8dp"
-        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_marginStart="8dp"
+        android:layout_below="@+id/no"
         android:background="#9e9e9e"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="8dp"/>
 
-    <ImageView
-        android:id="@+id/cars"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/clear"
-        android:layout_marginEnd="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_directions_car_black_36px"
-        />
+        android:layout_marginEnd="8dp"/>
 
     <ImageView
         android:id="@+id/clear"
@@ -47,5 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/btn_dialog" />
+
+
 
 </RelativeLayout>

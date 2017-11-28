@@ -48,7 +48,7 @@ public class RealmAdapter extends RecyclerView.Adapter<RealmAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
-        holder.name.setText(list.get(position).getName());
+        holder.name.setText(list.get(position).getName()+list.get(position).getLastname());
         holder.phone.setText(list.get(position).getPhone());
         holder.clear.setOnClickListener(new View.OnClickListener() {
             @Override

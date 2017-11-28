@@ -6,6 +6,7 @@ import com.example.akshaymanagooli.realm_db.Model.CarsDB;
 import com.example.akshaymanagooli.realm_db.Model.UserDB;
 import com.example.akshaymanagooli.realm_db.Modules.RealmUserModule;
 import com.example.akshaymanagooli.realm_db.View_DetailsActivity;
+import com.example.akshaymanagooli.realm_db.migration.MyMigration;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -21,8 +22,9 @@ public class HelperClass {
     public static HelperClass instance;
     public RealmConfiguration UserConfig = new RealmConfiguration.Builder()
             .name("User.realm")
-            .schemaVersion(1)
+            .schemaVersion(7)
             .modules(new RealmUserModule())
+            .migration(new MyMigration())
             .build();
 
     public HelperClass(){

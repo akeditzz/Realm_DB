@@ -10,7 +10,7 @@ public class CarsDB extends RealmObject {
 
 
     String phone;
-    String carno;
+
     String carname;
 
     public String getPhone() {
@@ -21,13 +21,7 @@ public class CarsDB extends RealmObject {
         this.phone = phone;
     }
 
-    public String getCarno() {
-        return carno;
-    }
 
-    public void setCarno(String carno) {
-        this.carno = carno;
-    }
 
     public String getCarname() {
         return carname;

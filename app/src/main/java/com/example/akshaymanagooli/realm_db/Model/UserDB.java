@@ -14,6 +14,15 @@ public class UserDB extends RealmObject  {
 
     String name;
     String phone;
+    String lastname;
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
 
     public int getId() {
         return id;

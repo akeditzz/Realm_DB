@@ -45,7 +45,7 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.ViewHolder> {
         Log.e("dafsdfd",list.get(position).getCarname());
 
         holder.name.setText(list.get(position).getCarname());
-        holder.no.setText(list.get(position).getCarno());
+//        holder.no.setText(list.get(position).getCarno());
         holder.clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.akshaymanagooli.realm_db.Model.CarsDB;
 import com.example.akshaymanagooli.realm_db.Model.UserDB;
 import com.example.akshaymanagooli.realm_db.Modules.RealmUserModule;
+import com.example.akshaymanagooli.realm_db.migration.MyMigration;
 
 import java.util.Random;
 
@@ -27,7 +28,7 @@ import io.realm.RealmResults;
 public class MainActivity extends AppCompatActivity {
 
     Realm userRealm;
-    EditText name,phone,carname,carno;
+    EditText name,phone,carname,carno,etLastname;
     int i;
     RelativeLayout progressbar;
 
@@ -39,21 +40,17 @@ public class MainActivity extends AppCompatActivity {
 
         RealmConfiguration UserConfig = new RealmConfiguration.Builder()
                 .name("User.realm")
-                .schemaVersion(1)
+                .schemaVersion(7)
                 .modules(new RealmUserModule())
+                .migration(new MyMigration())
                 .build();
-
-
-
-
-
 
         userRealm = Realm.getInstance(UserConfig);
 
-//        realm.deleteAll();
         name = (EditText)findViewById(R.id.name);
         phone = (EditText)findViewById(R.id.phone);
         carname = (EditText)findViewById(R.id.et_carname);
+        etLastname = (EditText)findViewById(R.id.etlastname);
         carno = (EditText)findViewById(R.id.et_carno);
         progressbar = (RelativeLayout) findViewById(R.id.progressbar);
 
@@ -76,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
                 }else if(TextUtils.isEmpty(carno.getText().toString())){
                     carno.setError("Required");
                     carno.requestFocus();
+                }else if(TextUtils.isEmpty(etLastname.getText().toString())){
+                    etLastname.setError("Required");
+                    etLastname.requestFocus();
                 }else {
                     progressbar.setVisibility(View.VISIBLE);
                     Random r = new Random();
@@ -83,31 +83,21 @@ public class MainActivity extends AppCompatActivity {
                     userRealm.executeTransactionAsync(new Realm.Transaction() {
                         @Override
                         public void execute(Realm mrealm) {
-//
-//                            mrealm.beginTransaction();
                             UserDB userDB = mrealm.createObject(UserDB.class,i);
-//            userDB.setId(i);
                             userDB.setName(name.getText().toString());
                             userDB.setPhone(phone.getText().toString());
-
-
-//                            mrealm.commitTransaction();
-
+                            userDB.setLastname(etLastname.getText().toString());
                         }
                     }, new Realm.Transaction.OnSuccess() {
                         @Override
                         public void onSuccess() {
-
-
                             userRealm.executeTransactionAsync(new Realm.Transaction() {
                                 @Override
                                 public void execute(Realm nrealm) {
-
                                     CarsDB carsDB = nrealm.createObject(CarsDB.class);
                                     carsDB.setPhone(phone.getText().toString());
                                     carsDB.setCarname(carname.getText().toString());
-                                    carsDB.setCarno(carno.getText().toString());
-
+//                                    carsDB.setCarno(carno.getText().toString());
                                 }
                             }, new Realm.Transaction.OnSuccess() {
                                 @Override
@@ -123,11 +113,8 @@ public class MainActivity extends AppCompatActivity {
                             }, new Realm.Transaction.OnError() {
                                 @Override
                                 public void onError(Throwable error) {
-
                                 }
                             });
-
-
                         }
                     }, new Realm.Transaction.OnError() {
                         @Override
@@ -135,11 +122,8 @@ public class MainActivity extends AppCompatActivity {
                             progressbar.setVisibility(View.GONE);
                         }
                     });
-
                 }
-
                 RealmResults<UserDB> res = userRealm.where(UserDB.class).findAll();
-
                 int j = res.size();
                 for (int i=0;i<j;i++){
                     Log.e("Result: ",res.get(i).getId() +" "+res.get(i).getName()+" "+res.get(i).getPhone());
@@ -153,26 +137,18 @@ public class MainActivity extends AppCompatActivity {
                 showChangeLangDialog();
                 break;
         }
-
-
-
     }
 
     public void showChangeLangDialog() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-
         final View dialogView = LayoutInflater.from(this).inflate(R.layout.car_dialog, null);
         dialogBuilder.setView(dialogView);
-
         final EditText phonee = (EditText) dialogView.findViewById(R.id.phone);
         final EditText carnamee = (EditText) dialogView.findViewById(R.id.carname);
         final EditText carnoo = (EditText) dialogView.findViewById(R.id.carno);
-
-
         dialogBuilder.setTitle("Add Car");
         dialogBuilder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
             public void onClick(final DialogInterface dialog, int whichButton) {
-                //do something with edt.getText().toString();
                 RealmResults<UserDB> res = userRealm.where(UserDB.class).equalTo("phone",phonee.getText().toString()).findAll();
                 if (res.size()>0){
                     userRealm.executeTransactionAsync(new Realm.Transaction() {
@@ -181,8 +157,7 @@ public class MainActivity extends AppCompatActivity {
                             CarsDB carsDB = mrealm.createObject(CarsDB.class);
                             carsDB.setPhone(phonee.getText().toString());
                             carsDB.setCarname(carnamee.getText().toString());
-                            carsDB.setCarno(carnoo.getText().toString());
-
+//                            carsDB.setCarno(carnoo.getText().toString());
                         }
                     }, new Realm.Transaction.OnSuccess() {
                         @Override
@@ -193,25 +168,19 @@ public class MainActivity extends AppCompatActivity {
                             dialog.dismiss();
                             Intent i = new Intent(MainActivity.this,View_DetailsActivity.class);
                             startActivity(i);
-
-
                         }
                     }, new Realm.Transaction.OnError() {
                         @Override
                         public void onError(Throwable error) {
-
                         }
                     }); 
                 }else{
                     Toast.makeText(MainActivity.this, "This User Dosent Exists", Toast.LENGTH_SHORT).show();
                 }
-
-                
             }
         });
         dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                //pass
                 dialog.dismiss();
             }
         });
@@ -223,6 +192,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         userRealm.close();
-
     }
 }

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.akshaymanagooli.realm_db.Model.UserDB;
@@ -26,14 +27,7 @@ public class View_DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view__details);
         Realm.init(this);
 
-
-
-
-
-
-
         userRealm = HelperClass.getInstance().getRealm();
-
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(this);
@@ -42,6 +36,8 @@ public class View_DetailsActivity extends AppCompatActivity {
         RealmResults<UserDB> res = HelperClass.getInstance().getAllUsers();
         if (res.size()==0){
             Toast.makeText(this, "No Data!", Toast.LENGTH_SHORT).show();
+        }else{
+            Log.e("UserDetails",res.get(0).toString());
         }
 
         realmAdapter = new RealmAdapter(res,this,userRealm);
